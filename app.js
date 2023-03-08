@@ -1,5 +1,5 @@
 //basic lib import
-const {readdirSync} = require("fs");
+const { readdirSync } = require("fs");
 const path = require("path")
 const express = require("express");
 const app = express();
@@ -14,7 +14,7 @@ const rateLimit = require('express-rate-limit');
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(helmet());
 
 //request rate limit
@@ -22,9 +22,9 @@ const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
 app.use(limiter);
 
 //mongodb connection
-let Option = {autoIndex: true}
-mongoose.set('strictQuery',true)
-    .connect(process.env.URI,Option)
+let Option = { autoIndex: true }
+mongoose.set('strictQuery', true)
+    .connect(process.env.URI, Option)
     .then(() => {
         console.log('connected to DB');
     })
